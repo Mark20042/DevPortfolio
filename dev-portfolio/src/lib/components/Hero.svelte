@@ -4,8 +4,8 @@
 	import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-	import profilePic from '$lib/assets/proper.jpg';
-	import peacePic from '$lib/assets/peace.jpg';
+	import profilePic from '$lib/assets/mez.jpg';
+	import peacePic from '$lib/assets/omk.jpg';
 
 	let heroText;
 	let profileImage;
@@ -30,20 +30,18 @@
 		gsap.registerPlugin(ScrollTrigger);
 
 		// --- 1. SETUP HERO ELEMENTS ---
-		const scrambleElements = gsap.utils.toArray(
-			heroText.querySelectorAll('.greeting, .name')
-		);
+		const scrambleElements = gsap.utils.toArray(heroText.querySelectorAll('.greeting, .name'));
 		const titleElement = heroText.querySelector('.title');
 		const imageWrapper = profileImage.closest('.profile-image-wrapper');
 		const allHeroElements = [heroText, imageWrapper];
 
 		// --- 2. CREATE REUSABLE HERO INTRO TIMELINE ---
-		heroIntroTl = gsap.timeline({ 
-            paused: true,
-            onComplete: () => {
-                introFinished = true;
-            }
-        });
+		heroIntroTl = gsap.timeline({
+			paused: true,
+			onComplete: () => {
+				introFinished = true;
+			}
+		});
 
 		// A. Set initial states
 		heroIntroTl.set(scrambleElements, { textContent: ' ' });
@@ -113,8 +111,8 @@
 			onLeaveBack: () => {
 				fadeOutTl.reverse();
 				// heroIntroTl.restart(); // Don't restart fully to verify stable state
-                
-                // Ensure opacity is back to 1 if we reversed
+
+				// Ensure opacity is back to 1 if we reversed
 			}
 		});
 
@@ -127,7 +125,7 @@
 	let introFinished = false;
 
 	function scramble(event) {
-        if (!introFinished) return; // Prevent overwriting intro animation
+		if (!introFinished) return; // Prevent overwriting intro animation
 
 		const element = event.currentTarget;
 		const originalText = element.getAttribute('data-text');
@@ -165,14 +163,19 @@
 		</div>
 	</div>
 
-	<div 
-		class="profile-image-wrapper" 
+	<div
+		class="profile-image-wrapper"
 		role="img"
 		aria-label="Profile picture"
-		on:mouseenter={() => isHovered = true} 
-		on:mouseleave={() => isHovered = false}
+		on:mouseenter={() => (isHovered = true)}
+		on:mouseleave={() => (isHovered = false)}
 	>
-		<img src={isHovered ? peacePic : profilePic} alt="Your Profile" bind:this={profileImage} class="profile-image" />
+		<img
+			src={isHovered ? peacePic : profilePic}
+			alt="Your Profile"
+			bind:this={profileImage}
+			class="profile-image"
+		/>
 	</div>
 </div>
 
@@ -181,24 +184,30 @@
 {#if showModal}
 	<!-- svelte-ignore a11y_interactive_supports_focus -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
-	<div class="modal-overlay" on:click={closeModal} role="dialog" aria-modal="true" aria-labelledby="modal-title">
+	<div
+		class="modal-overlay"
+		on:click={closeModal}
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="modal-title"
+	>
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<div class="modal-content" on:click|stopPropagation role="document">
 			<button class="modal-close" on:click={closeModal} aria-label="Close modal">
 				<i class="fas fa-times"></i>
 			</button>
-			
+
 			<div class="modal-icon">
 				<i class="fas fa-file-pdf"></i>
 			</div>
-			
+
 			<h2 id="modal-title" class="modal-title">CV Coming Soon!</h2>
-			
+
 			<p class="modal-message">
-				I'm currently polishing my CV to showcase my best work. 
-				In the meantime, feel free to explore my projects or reach out directly!
+				I'm currently polishing my CV to showcase my best work. In the meantime, feel free to
+				explore my projects or reach out directly!
 			</p>
-			
+
 			<div class="modal-buttons">
 				<a href="/#projects" class="modal-btn secondary" on:click={closeModal}>
 					<i class="fas fa-folder-open"></i> View Projects
@@ -240,7 +249,7 @@
 		margin-bottom: 0.5rem;
 		line-height: 1.1;
 		color: var(--accent-primary);
-		
+
 		cursor: pointer;
 	}
 	.title {
@@ -250,9 +259,9 @@
 		color: var(--text-primary);
 		cursor: pointer;
 	}
-    .highlight {
-        color: var(--accent-secondary); 
-    }
+	.highlight {
+		color: var(--accent-secondary);
+	}
 	.quote {
 		font-size: 1.1rem;
 		font-style: italic;
@@ -272,7 +281,7 @@
 			border-color 0.5s ease-in-out;
 		justify-self: center;
 	}
-	
+
 	.profile-image {
 		width: 100%;
 		height: 100%;
@@ -283,7 +292,6 @@
 
 	.profile-image-wrapper:hover .profile-image {
 		cursor: pointer;
-	
 	}
 
 	.hero-buttons {
@@ -340,7 +348,6 @@
 		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 	}
 
-	
 	@media (max-width: 900px) {
 		.hero-section {
 			grid-template-columns: 1fr;
@@ -425,7 +432,7 @@
 		width: 90%;
 		text-align: center;
 		position: relative;
-		box-shadow: 
+		box-shadow:
 			0 25px 50px -12px rgba(0, 0, 0, 0.5),
 			0 0 0 1px rgba(255, 255, 255, 0.05),
 			inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -483,7 +490,8 @@
 	}
 
 	@keyframes pulse {
-		0%, 100% {
+		0%,
+		100% {
 			box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
 		}
 		50% {
@@ -494,17 +502,16 @@
 	.modal-title {
 		font-size: 1.8rem;
 		font-weight: 700;
-		color:white;
+		color: white;
 		margin-bottom: 1rem;
 		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
-		
 	}
 
 	.modal-message {
-		color:white;
+		color: white;
 		font-size: 1rem;
 		line-height: 1.7;
 		margin-bottom: 2rem;
@@ -528,7 +535,6 @@
 		text-decoration: none;
 		transition: all 0.3s ease;
 		cursor: pointer;
-		
 	}
 
 	.modal-btn.primary {
