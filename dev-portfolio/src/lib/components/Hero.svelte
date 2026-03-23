@@ -5,7 +5,7 @@
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 	import profilePic from '$lib/assets/mez.jpg';
-	import peacePic from '$lib/assets/omk.jpg';
+	import peacePic from '$lib/assets/pice.jpg';
 
 	let heroText;
 	let profileImage;
